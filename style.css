@@ -1,0 +1,60 @@
+*{
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.board{
+
+  height: 50vw;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+
+.board > div{
+
+height: calc(100%/9);
+width: calc(100%/9);
+border: 1px solid black;
+
+
+
+}
+
+
+.active{
+  border:5px solid pink;
+
+}
+
+
+ .i{
+   background-color: red;
+
+ }
+ .l{
+   background-color: green;
+
+ }
+ .j{
+   background-color: blue;
+
+ }
+ .o{
+   background-color: yellow;
+
+ }
+ .s{
+   background-color: orange;
+
+ }
+ .t{
+   background-color: purple;
+
+ }
+ .z{
+   background-color: silver;
+
+ }
