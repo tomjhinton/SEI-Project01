@@ -73,6 +73,7 @@ function clearBoard(){
   const squares = document.querySelectorAll('.board > div')
 
 
+
   const i = [3,4,5,6]
   const l = [3,12,13,14]
   const j = [5,12,13,14]
@@ -81,7 +82,14 @@ function clearBoard(){
   const t = [12,13,14,4]
   const z = [4,5,12,13]
 
-  const iMap = [1,1,1,1]
+
+
+
+
+
+  const iMap = [0,0,1,1,1,1,0,0,0]
+
+
   const lMap = [3,12,13,14]
   const jMap = [5,12,13,14]
   const oMap = [3,4,13,14]
@@ -89,31 +97,202 @@ function clearBoard(){
   const tMap = [12,13,14,4]
   const zMap = [4,5,12,13]
 
-  function drawWorld(){
 
 
-  	for( var y = 0; y < squareMap.length; y++) {
-  		console.log(squareMap[y])
-  		for (var x=0; x<squareMap[y].length; x++) {
-  			console.log(squareMap[y][x])
-  			if(squareMap[y][x] === 0) {
-  				console.log('81')
 
 
-  		}else if(squareMap[y][x] === 1 || squareMap[y][x] === 11) {
 
 
+
+  function moveShapesDown(){
+    var canMove = true
+
+    for( var y = 0; y < squareMap.length; y++) {
+
+      for (var x=0; x<squareMap[y].length; x++) {
+
+  		if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
+  				if(y === squareMap.length-1 || squareMap[y+1][x] >10 ) {
+  					canMove = false;
+  					freeze();
+  				}
 
   			}
   		}
 
+  	}
+  	if(canMove) {
+
+  		for(var y=squareMap.length-1;  y>=0;  y-- ){
+
+  		for (var x=0; x<squareMap[y].length; x++) {
+  			if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
+  				squareMap[y+1][x] = squareMap[y][x];
+  				squareMap[y][x] =0;
+
+  			}
 
 
+  		}
 
   	}
+
+
+    }
+
   }
 
-  drawWorld()
+
+
+  function freeze(){
+  	for( var y = 0; y < squareMap.length; y++) {
+
+  		for (var x=0; x<squareMap[y].length; x++) {
+
+  			if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
+  				squareMap[y][x] = squareMap[y][x] + 10
+  			}
+
+  		}
+  	}
+  	//	checkLines();
+
+  		var ran = Math.floor(Math.random()*7)
+
+  		if (ran === 0){
+
+  		squareMap[0] =[0,0,0,2,2,0,0,0]
+
+  		squareMap[1]= [0,0,0,2,2,0,0,0]
+
+
+  	}else if (ran === 1){
+
+  		squareMap[0] =[0,0,0,0,0,0,0,0]
+
+  		squareMap[1]= [0,0,4,4,4,4,0,0]
+
+  		}else if (ran === 2){
+
+  		squareMap[0] =[0,0,0,3,0,0,0,0]
+
+  		squareMap[1]= [0,0,0,3,3,3,0,0]
+  	}else if (ran === 3){
+
+    squareMap[0] =[0,0,0,0,0,5,0,0]
+
+    squareMap[1]= [0,0,0,5,5,5,0,0]
+  }else if (ran === 4){
+
+  squareMap[0] =[0,0,0,0,6,6,0,0]
+
+  squareMap[1]= [0,0,0,6,6,0,0,0]
+}else if (ran === 5){
+
+squareMap[0] =[0,0,0,7,0,0,0,0]
+
+squareMap[1]= [0,0,7,7,7,0,0,0]
+}else if (ran === 6){
+
+squareMap[0] =[0,0,0,0,0,8,0,0]
+
+squareMap[1]= [0,0,0,8,8,8,0,0]
+}
+  }
+
+
+
+
+
+
+
+  function drawWorld(a,b){
+
+    squareMap[0].forEach(function (element, index)  {
+      if(element === a){
+        squares[index].removeAttribute('class')
+        squares[index].classList.add(b)
+      }
+    })
+    squareMap[1].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+9].removeAttribute('class')
+        squares[index+9].classList.add(b)
+      }
+    })
+    squareMap[2].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+18].removeAttribute('class')
+        squares[index+18].classList.add(b)
+      }
+    })
+    squareMap[3].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+27].removeAttribute('class')
+        squares[index+27].classList.add(b)
+      }
+    })
+    squareMap[4].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+36].removeAttribute('class')
+        squares[index+36].classList.add(b)
+      }
+    })
+    squareMap[5].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+45].removeAttribute('class')
+        squares[index+45].classList.add(b)
+      }
+    })
+    squareMap[6].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+54].removeAttribute('class')
+        squares[index+54].classList.add(b)
+      }
+    })
+    squareMap[7].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+63].removeAttribute('class')
+        squares[index+63].classList.add(b)
+      }
+    })
+    squareMap[8].forEach(function (element, index)  {
+      if(element === a){
+        squares[index+72].removeAttribute('class')
+        squares[index+72].classList.add(b)
+      }
+    })
+
+
+  }
+
+
+  setInterval(function () {
+
+
+    squareMap[2] = iMap
+    console.log(squareMap)
+
+
+
+    drawWorld(1, 'i')
+    drawWorld(2, 'l')
+    drawWorld(3, 'j')
+    drawWorld(4, 'o')
+    drawWorld(5, 's')
+    drawWorld(6, 't')
+    drawWorld(7, 'z')
+    drawWorld(0, 'b')
+    moveShapesDown()
+  }, 1000)
+
+
+
+
+
+
+
+
 
   const pieces = [i, l, j, o, s, t, z ]
   const piecesColor = ['i', 'l', 'j', 'o', 's', 't', 'z' ]
