@@ -1,32 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  const board = document.querySelector('.board')
 
 
-  const width = 9
+
 
   //  right: index+1 - if(index%width < width-1)
   //  down: index+width - if(index+width <= width*width-1)
   //  left: index-1 - if(index%width > 0)
   //  up: index-width - if(index-width >= 0)
 
+  const board = document.querySelector('.board')
+  const iSelect = document.querySelectorAll('.board > .i')
+  const lSelect = document.querySelectorAll('.board > .l')
+  const jSelect = document.querySelectorAll('.board > .j')
+  const oSelect = document.querySelectorAll('.board > .o')
+  const sSelect = document.querySelectorAll('.board > .s')
+  const tSelect = document.querySelectorAll('.board > .t')
+  const zSelect = document.querySelectorAll('.board > .z')
 
+function assignClass() {
 
+}
 
   let random = Math.floor(Math.random()* 7)
   console.log(random)
 
 
+
+  function newPiece(){
+    random = Math.floor(Math.random()* 7)
+    choice = random
+    inPlay = pieces[choice]
+    inPlayColor = piecesColor[choice]
+    console.log('new pieces')
+  }
+
+  const width = 9
+  const square =[]
+  const squareMap = []
+
   function makeBoard(){
     for(let i=0;i <81; i++){
       const div = document.createElement('div')
       board.appendChild(div)
-
+      square.push(0)
+      console.log()
     }
 
   }
 
-  makeBoard()
+makeBoard()
+
+
+square.forEach((element)=>{
+    if(!squareMap.length || squareMap[squareMap.length-1].length === width)
+      squareMap.push([])
+
+    squareMap[squareMap.length-1].push(element)
+  })
+
+
+
+function clearBoard(){
+    squareMap.forEach(row => row.fill(0))
+}
+
+
+
+
+
 
   const squares = document.querySelectorAll('.board > div')
 
@@ -38,6 +80,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const s = [4,5,12,13]
   const t = [12,13,14,4]
   const z = [4,5,12,13]
+
+  const iMap = [1,1,1,1]
+  const lMap = [3,12,13,14]
+  const jMap = [5,12,13,14]
+  const oMap = [3,4,13,14]
+  const sMap = [4,5,12,13]
+  const tMap = [12,13,14,4]
+  const zMap = [4,5,12,13]
+
+  function drawWorld(){
+
+
+  	for( var y = 0; y < squareMap.length; y++) {
+  		console.log(squareMap[y])
+  		for (var x=0; x<squareMap[y].length; x++) {
+  			console.log(squareMap[y][x])
+  			if(squareMap[y][x] === 0) {
+  				console.log('81')
+
+
+  		}else if(squareMap[y][x] === 1 || squareMap[y][x] === 11) {
+
+
+
+  			}
+  		}
+
+
+
+
+  	}
+  }
+
+  drawWorld()
 
   const pieces = [i, l, j, o, s, t, z ]
   const piecesColor = ['i', 'l', 'j', 'o', 's', 't', 'z' ]
@@ -64,16 +140,38 @@ const row7 = [squares[54],squares[55],squares[56], squares[57], squares[58], squ
 
 const row8 = [squares[63],squares[64],squares[65], squares[66], squares[67], squares[68], squares[69], squares[70], squares[71]]
 
-const row9 = [squares[72],squares[73],squares[74], squares[75], squares[75], squares[77], squares[78], squares[79], squares[80]]
+const row9 = [squares[72],squares[73],squares[74], squares[75], squares[76], squares[77], squares[78], squares[79], squares[80]]
 
-console.log(board)
+  console.log(square)
 
-  inPlay.forEach( element  => {
-    squares[element].classList.add(inPlayColor)
-    setInterval(function () {
-      squares[element].classList.remove(inPlayColor)
-    }, 1000)
+  row9.forEach( element  => {
+    element.classList.add('stopped')
   })
+
+
+
+
+  //inPlay.forEach( element  => {
+
+//    setInterval(function () {
+
+
+  //    squares[element].classList.add(inPlayColor)
+  //    const time =  setTimeout(function () {
+        //if(element+ 9 <= 81 && squares[element].classList.contains('stopped') !== true){
+  //        squares[element].classList.remove(inPlayColor)
+  //        element +=9
+  //      } else if (element+ 9 >= 81 || (element +9).classList.contains('stopped')   ){
+  //        squares[element].classList.add('stopped')
+  //        clearTimeout(time)
+
+
+
+    //    }
+    //  }, 1000)
+
+  //  }, 2000)
+//  })
 
   //console.log(i[0])
 
