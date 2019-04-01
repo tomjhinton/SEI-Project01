@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let ran = Math.floor(Math.random()*7)
 
-    ran =2
+    ran =4
     if (ran === 0){
 
 
@@ -602,23 +602,23 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 ///// SHAPE DONE!!!
 
-        if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5)
 
 
 
-
-//rotate s 5
-if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5){
+          //rotate s 5
+          if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5){
             squareMap[y][x] = 5
-            squareMap[y][x-1] = 5
-            squareMap[y-1][x-1] = 5
-            squareMap[y+1][x] = 0
-            squareMap[y-1][x-1] = 5
+            squareMap[y-1][x] = 5
+            squareMap[y][x+1] = 5
+            squareMap[y+1][x+1] = 5
+            squareMap[y][x-1] = 0
+            squareMap[y-1][x+1] = 0
 
 
 
-  console.log('5')
-}
+
+            console.log('5')
+          }
 
 
 //rotate z 7
