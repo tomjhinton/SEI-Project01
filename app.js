@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let ran = Math.floor(Math.random()*7)
 
-    ran =3
+    ran =2
     if (ran === 0){
 
 
@@ -553,6 +553,54 @@ document.addEventListener('DOMContentLoaded', () => {
 //rotate l 2
 
 
+          if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 ){
+            squareMap[y][x] = 2
+            squareMap[y][x-1] = 0
+            squareMap[y][x+1] = 0
+            squareMap[y-1][x-1] = 0
+            squareMap[y+1][x] = 2
+            squareMap[y-1][x] = 2
+            squareMap[y-1][x+1] = 2
+
+//done
+
+} else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 ){
+            squareMap[y][x] = 2
+            squareMap[y][x+1] = 2
+            squareMap[y][x-1] = 2
+            squareMap[y+1][x+1] = 2
+            squareMap[y+1][x] = 0
+            squareMap[y-1][x] = 0
+            squareMap[y-1][x+1] = 0
+            console.log('spinny')
+
+            // done
+          } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2 ){
+            squareMap[y][x] = 2
+            squareMap[y-1][x] = 2
+            squareMap[y+1][x] = 2
+            squareMap[y-1][x-1] = 2
+            squareMap[y+1][x-1] = 2
+
+            squareMap[y-1][x-1] = 0
+            squareMap[y+1][x+1] = 0
+            squareMap[y][x-1] = 0
+            squareMap[y][x+1] = 0
+          //  done
+            console.log('hey')
+          }  else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y+1][x-1] === 2 ){
+            squareMap[y][x] = 2
+            squareMap[y][x-1] = 2
+            squareMap[y][x+1] = 2
+            squareMap[y-1][x-1] = 2
+            squareMap[y+1][x] = 0
+            squareMap[y+1][x-1] = 0
+            squareMap[y-1][x] = 0
+            console.log('blah')
+            return
+
+}
+///// SHAPE DONE!!!
 
         if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5)
 
