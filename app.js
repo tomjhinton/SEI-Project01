@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = Math.floor(Math.random()*5)
 
     if(on){
-      ran =1
+      ran =2
 
       if (ran === 0){
 
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //done
 
-          } else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 ){
+          } else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 && squareMap[y][x-1] === 0 ){
             squareMap[y][x] = 2
             squareMap[y][x+1] = 2
             squareMap[y][x-1] = 2
