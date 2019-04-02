@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = Math.floor(Math.random()*5)
 
     if(on){
-      ran =2
+      //ran =6
 
       if (ran === 0){
 
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
             squareMap[y-1][x+1] = 0
             console.log('5')
             //done
-          } else if(squareMap[y][x] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x+1] === 5){
+          } else if(squareMap[y][x] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x+1] === 5 && squareMap[y+1][x-1] === 0){
             squareMap[y][x] = 5
             squareMap[y][x+1] = 5
             squareMap[y+1][x] = 5
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //  console.log('777777777')
 
-          }else if(squareMap[y][x] === 7 && squareMap[y+1][x] === 7 && squareMap[y][x+1] === 7 && squareMap[y-1][x+1] === 7){
+          }else if(squareMap[y][x] === 7 && squareMap[y+1][x] === 7 && squareMap[y][x+1] === 7 && squareMap[y-1][x+1] === 7&&   squareMap[y][x-1] === 0){
           //  console.log('here we gooooo again')
 
             squareMap[y][x] = 7
@@ -673,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const  loop = setInterval(function () {
 
     if(on === true){
-    //  console.log(squareMap)
+      console.log(squareMap)
       checkForLoss()
       upadteBoard()
       moveShapesDown()
@@ -685,7 +685,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const  update = setInterval(function () {
 
     if(on === true){
-      console.log(squareMap)
+      //console.log(squareMap)
       checkForLoss()
       upadteBoard()
 
