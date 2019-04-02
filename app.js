@@ -1,14 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 
-
-
-
-  //  right: index+1 - if(index%width < width-1)
-  //  down: index+width - if(index+width <= width*width-1)
-  //  left: index-1 - if(index%width > 0)
-  //  up: index-width - if(index-width >= 0)
-
   const board = document.querySelector('.board')
   //const iSelect = document.querySelectorAll('.board > .i')
   //const lSelect = document.querySelectorAll('.board > .l')
@@ -70,20 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  //const i = [3,4,5,6]
-  //const l = [3,12,13,14]
-  //const j = [5,12,13,14]
-  //const o = [3,4,13,14]
-  //const s = [4,5,12,13]
-  //const t = [12,13,14,4]
-  //const z = [4,5,12,13]
-
-
-
-
-
-
-  const iMap = [0,0,1,1,1,1,0,0,0]
 
 
   //const lMap = [3,12,13,14]
@@ -92,18 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
   //const sMap = [4,5,12,13]
   //const tMap = [12,13,14,4]
   //const zMap = [4,5,12,13]
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -277,76 +243,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const generateShape = function generateShape(){
-  let ran = Math.floor(Math.random()*7)
-  const pos = Math.floor(Math.random()*5)
+    let ran = Math.floor(Math.random()*7)
+    const pos = Math.floor(Math.random()*5)
 
 
-  //ran =5
+    //ran =5
 
-  if (ran === 0){
-
-
-
-    squareMap[0][pos] =4
-    squareMap[0][pos+1] =4
-    squareMap[1][pos] =4
-    squareMap[1][pos+1] =4
-
-
-  }else if (ran === 1){
-
-    squareMap[0][pos] =1
-    squareMap[0][pos+1] =1
-    squareMap[0][pos+2] =1
-    squareMap[0][pos+3] =1
-
-  }else if (ran === 2){
-
-    squareMap[0][pos] =2
-    squareMap[1][pos] =2
-    squareMap[1][pos+1] =2
-    squareMap[1][pos+2] =2
-
-
-  }else if (ran === 3){
+    if (ran === 0){
 
 
 
-    squareMap[0][pos+2] = 3
-    squareMap[1][pos+1] = 3
-    squareMap[1][pos+2] = 3
-    squareMap[1][pos] = 3
+      squareMap[0][pos] =4
+      squareMap[0][pos+1] =4
+      squareMap[1][pos] =4
+      squareMap[1][pos+1] =4
 
 
-  }else if (ran === 4){
+    }else if (ran === 1){
+
+      squareMap[0][pos] =1
+      squareMap[0][pos+1] =1
+      squareMap[0][pos+2] =1
+      squareMap[0][pos+3] =1
+
+    }else if (ran === 2){
+
+      squareMap[0][pos] =2
+      squareMap[1][pos] =2
+      squareMap[1][pos+1] =2
+      squareMap[1][pos+2] =2
+
+
+    }else if (ran === 3){
 
 
 
-    squareMap[0][pos+2] =5
-    squareMap[0][pos+1] =5
-    squareMap[1][pos] =5
-    squareMap[1][pos+1] =5
+      squareMap[0][pos+2] = 3
+      squareMap[1][pos+1] = 3
+      squareMap[1][pos+2] = 3
+      squareMap[1][pos] = 3
 
 
-  }else if (ran === 5){
+    }else if (ran === 4){
 
 
-    squareMap[0][pos+1] =6
-    squareMap[1][pos+2] =6
-    squareMap[1][pos] =6
-    squareMap[1][pos+1] =6
+
+      squareMap[0][pos+2] =5
+      squareMap[0][pos+1] =5
+      squareMap[1][pos] =5
+      squareMap[1][pos+1] =5
 
 
-  }else if (ran === 6){
+    }else if (ran === 5){
 
 
-    squareMap[0][pos] = 7
-    squareMap[0][pos+1] = 7
-    squareMap[1][pos+1] = 7
-    squareMap[1][pos+2] = 7
+      squareMap[0][pos+1] =6
+      squareMap[1][pos+2] =6
+      squareMap[1][pos] =6
+      squareMap[1][pos+1] =6
+
+
+    }else if (ran === 6){
+
+
+      squareMap[0][pos] = 7
+      squareMap[0][pos+1] = 7
+      squareMap[1][pos+1] = 7
+      squareMap[1][pos+2] = 7
+    }
   }
-}
-generateShape()
+  generateShape()
 
 
 
@@ -494,19 +460,19 @@ generateShape()
         for (let x=squareMap[y].length; x>=0; x--) {
 
 
-// t Rotate
-           if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y][x+2] === 6 && squareMap[y-1][x+1] === 6 )
-          { squareMap[y][x] = 0
+          // t Rotate
+          if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y][x+2] === 6 && squareMap[y-1][x+1] === 6 ){
+            squareMap[y][x] = 0
             squareMap[y+1][x+1] = 6
             squareMap[y-1][x+1] = 6
             console.log('1')
-          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 )
-          { squareMap[y-1][x] = 0
+          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 ){
+            squareMap[y-1][x] = 0
             squareMap[y][x-1] = 6
             squareMap[y][x+1] = 6
             console.log('2')
-          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0)
-          { squareMap[y][x+1] = 0
+          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0){
+            squareMap[y][x+1] = 0
             squareMap[y][x-1] = 6
             squareMap[y+1][x] = 6
             squareMap[y-1][x] = 6
@@ -520,7 +486,7 @@ generateShape()
             return
           }
 
-//irotate
+          //irotate
           if(squareMap[y][x] === 1 && squareMap[y][x+1] === 1 && squareMap[y][x+2] === 1 && squareMap[y][x+3] === 1){
             squareMap[y+1][x+1] = 1
             squareMap[y+2][x+1] = 1
@@ -539,7 +505,7 @@ generateShape()
             squareMap[y+1][x+3] = 1
 
           }
-//rotate j 3
+          //rotate j 3
           if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y-1][x+1] === 3 ){
             squareMap[y][x] = 3
             squareMap[y][x-1] = 0
@@ -577,11 +543,11 @@ generateShape()
             squareMap[y][x+1] = 3
             squareMap[y-1][x+1] = 3
             return
-            console.log('heyHo')
+            //console.log('heyHo')
           }
 
 
-//rotate l 2
+          //rotate l 2
 
 
           if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 ){
@@ -593,9 +559,9 @@ generateShape()
             squareMap[y-1][x] = 2
             squareMap[y-1][x+1] = 2
 
-//done
+            //done
 
-} else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 ){
+          } else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 ){
             squareMap[y][x] = 2
             squareMap[y][x+1] = 2
             squareMap[y][x-1] = 2
@@ -617,7 +583,7 @@ generateShape()
             squareMap[y+1][x+1] = 0
             squareMap[y][x-1] = 0
             squareMap[y][x+1] = 0
-          //  done
+            //  done
             console.log('hey')
           }  else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y+1][x-1] === 2 ){
             squareMap[y][x] = 2
@@ -630,8 +596,8 @@ generateShape()
             console.log('blah')
             return
 
-}
-///// SHAPE DONE!!!
+          }
+          ///// SHAPE DONE!!!
 
 
 
@@ -666,36 +632,31 @@ generateShape()
 
 
 
-//rotate z 7
-  if(squareMap[y][x] === 7 && squareMap[y-1][x-1] === 7 && squareMap[y-1][x] === 7 && squareMap[y][x+1] === 7){
+          //rotate z 7
+          if(squareMap[y][x] === 7 && squareMap[y-1][x-1] === 7 && squareMap[y-1][x] === 7 && squareMap[y][x+1] === 7){
 
 
-    squareMap[y][x] = 7
-    squareMap[y+1][x] = 7
-    squareMap[y][x+1] = 7
-    squareMap[y-1][x+1] = 7
-    squareMap[y-1][x] = 0
-    squareMap[y-1][x-1] = 0
+            squareMap[y][x] = 7
+            squareMap[y+1][x] = 7
+            squareMap[y][x+1] = 7
+            squareMap[y-1][x+1] = 7
+            squareMap[y-1][x] = 0
+            squareMap[y-1][x-1] = 0
 
-    console.log('777777777')
+            console.log('777777777')
 
-  }else if(squareMap[y][x] === 7 && squareMap[y+1][x] === 7 && squareMap[y][x+1] === 7 && squareMap[y-1][x+1] === 7){
-    console.log('here we gooooo again')
+          }else if(squareMap[y][x] === 7 && squareMap[y+1][x] === 7 && squareMap[y][x+1] === 7 && squareMap[y-1][x+1] === 7){
+            console.log('here we gooooo again')
 
-    squareMap[y][x] = 7
-    squareMap[y+1][x] = 7
-    squareMap[y+1][x+1] = 7
-    squareMap[y][x-1] = 7
-    squareMap[y][x+1] = 0
-    squareMap[y-1][x+1] = 0
-
-
-  }
+            squareMap[y][x] = 7
+            squareMap[y+1][x] = 7
+            squareMap[y+1][x+1] = 7
+            squareMap[y][x-1] = 7
+            squareMap[y][x+1] = 0
+            squareMap[y-1][x+1] = 0
 
 
-
-
-
+          }
 
 
 
@@ -754,18 +715,18 @@ generateShape()
 
 
 
-function upadteBoard(){
-  drawWorld(1, 'i')
-  drawWorld(2, 'l')
-  drawWorld(3, 'j')
-  drawWorld(4, 'o')
-  drawWorld(5, 's')
-  drawWorld(6, 't')
-  drawWorld(7, 'z')
-  drawWorld(0, 'b')
-  checkLines()
+  function upadteBoard(){
+    drawWorld(1, 'i')
+    drawWorld(2, 'l')
+    drawWorld(3, 'j')
+    drawWorld(4, 'o')
+    drawWorld(5, 's')
+    drawWorld(6, 't')
+    drawWorld(7, 'z')
+    drawWorld(0, 'b')
+    checkLines()
 
-}
+  }
 
 
 
@@ -775,11 +736,11 @@ function upadteBoard(){
   const  loop = setInterval(function () {
 
     if(on === true){
-    console.log(squareMap)
+      console.log(squareMap)
 
       upadteBoard()
-    moveShapesDown()
-  }
+      moveShapesDown()
+    }
   }, 1000)
 
 
@@ -788,10 +749,10 @@ function upadteBoard(){
     if(on === true){
     //console.log(squareMap)
 
-  upadteBoard()
+      upadteBoard()
 
-  }
-}, 500)
+    }
+  }, 500)
 
 
 //Fucking DOMContentLoaded
