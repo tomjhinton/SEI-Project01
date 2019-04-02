@@ -55,23 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
   const squares = document.querySelectorAll('.board > div')
-
-
-
-
-
-  //const lMap = [3,12,13,14]
-  //const jMap = [5,12,13,14]
-  //const oMap = [3,4,13,14]
-  //const sMap = [4,5,12,13]
-  //const tMap = [12,13,14,4]
-  //const zMap = [4,5,12,13]
-
-
 
 
   function drawWorld(a,b){
@@ -237,6 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     checkLines()
+    checkForLoss()
+
     generateShape()
   }
 
@@ -246,70 +232,71 @@ document.addEventListener('DOMContentLoaded', () => {
     let ran = Math.floor(Math.random()*7)
     const pos = Math.floor(Math.random()*5)
 
-
+    if(on){
     //ran =5
 
-    if (ran === 0){
+      if (ran === 0){
 
 
 
-      squareMap[0][pos] =4
-      squareMap[0][pos+1] =4
-      squareMap[1][pos] =4
-      squareMap[1][pos+1] =4
+        squareMap[0][pos] =4
+        squareMap[0][pos+1] =4
+        squareMap[1][pos] =4
+        squareMap[1][pos+1] =4
 
 
-    }else if (ran === 1){
+      }else if (ran === 1){
 
-      squareMap[0][pos] =1
-      squareMap[0][pos+1] =1
-      squareMap[0][pos+2] =1
-      squareMap[0][pos+3] =1
+        squareMap[0][pos] =1
+        squareMap[0][pos+1] =1
+        squareMap[0][pos+2] =1
+        squareMap[0][pos+3] =1
 
-    }else if (ran === 2){
+      }else if (ran === 2){
 
-      squareMap[0][pos] =2
-      squareMap[1][pos] =2
-      squareMap[1][pos+1] =2
-      squareMap[1][pos+2] =2
-
-
-    }else if (ran === 3){
+        squareMap[0][pos] =2
+        squareMap[1][pos] =2
+        squareMap[1][pos+1] =2
+        squareMap[1][pos+2] =2
 
 
-
-      squareMap[0][pos+2] = 3
-      squareMap[1][pos+1] = 3
-      squareMap[1][pos+2] = 3
-      squareMap[1][pos] = 3
-
-
-    }else if (ran === 4){
+      }else if (ran === 3){
 
 
 
-      squareMap[0][pos+2] =5
-      squareMap[0][pos+1] =5
-      squareMap[1][pos] =5
-      squareMap[1][pos+1] =5
+        squareMap[0][pos+2] = 3
+        squareMap[1][pos+1] = 3
+        squareMap[1][pos+2] = 3
+        squareMap[1][pos] = 3
 
 
-    }else if (ran === 5){
+      }else if (ran === 4){
 
 
-      squareMap[0][pos+1] =6
-      squareMap[1][pos+2] =6
-      squareMap[1][pos] =6
-      squareMap[1][pos+1] =6
+
+        squareMap[0][pos+2] =5
+        squareMap[0][pos+1] =5
+        squareMap[1][pos] =5
+        squareMap[1][pos+1] =5
 
 
-    }else if (ran === 6){
+      }else if (ran === 5){
 
 
-      squareMap[0][pos] = 7
-      squareMap[0][pos+1] = 7
-      squareMap[1][pos+1] = 7
-      squareMap[1][pos+2] = 7
+        squareMap[0][pos+1] =6
+        squareMap[1][pos+2] =6
+        squareMap[1][pos] =6
+        squareMap[1][pos+1] =6
+
+
+      }else if (ran === 6){
+
+
+        squareMap[0][pos] = 7
+        squareMap[0][pos+1] = 7
+        squareMap[1][pos+1] = 7
+        squareMap[1][pos+2] = 7
+      }
     }
   }
   generateShape()
@@ -364,6 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
           if(x === 8 || squareMap[y][x+1] >10 ) {
             canMove = false
+
 
           }
 
@@ -546,7 +534,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //console.log('heyHo')
           }
 
-
           //rotate l 2
 
 
@@ -601,7 +588,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
           //rotate s 5
           if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5){
             squareMap[y][x] = 5
@@ -631,7 +617,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
           //rotate z 7
           if(squareMap[y][x] === 7 && squareMap[y-1][x-1] === 7 && squareMap[y-1][x] === 7 && squareMap[y][x+1] === 7){
 
@@ -657,7 +642,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
           }
-
 
 
         }
@@ -692,6 +676,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  function checkForLoss(){
+
+    for( let y = 0; y < squareMap.length; y++) {
+      let  lose=false
+      for (let x=0; x<squareMap[y].length; x++) {
+        if(squareMap[0][x] > 10 && squareMap[1][x] > 10 ) {
+          lose= true
+        }
+
+
+      }
+      if (lose) {
+        console.log('lose')
+        on = false
+        board.innerText ='GAME OVER!'
+
+      }
+    }
+  }
+
+
   document.onkeydown =function(e){
     if(e.keyCode === 37){
       moveShapesLeft()
@@ -713,8 +718,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-
   function upadteBoard(){
     drawWorld(1, 'i')
     drawWorld(2, 'l')
@@ -730,16 +733,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
   const  loop = setInterval(function () {
 
     if(on === true){
-      console.log(squareMap)
-
+    //  console.log(squareMap)
+      checkForLoss()
       upadteBoard()
       moveShapesDown()
+
     }
   }, 1000)
 
@@ -747,8 +748,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const  update = setInterval(function () {
 
     if(on === true){
-    //console.log(squareMap)
-
+    console.log(squareMap)
+      checkForLoss()
       upadteBoard()
 
     }
