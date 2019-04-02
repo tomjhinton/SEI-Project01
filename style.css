@@ -23,6 +23,10 @@ border: 1px solid black;
 
 }
 
+.topRow{
+  visibility: hidden: 
+}
+
 
 .active{
   border:5px solid pink;
