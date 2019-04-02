@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   const random = Math.floor(Math.random()* 7)
-  console.log(random)
+  //console.log(random)
 
   const scoreDiv = document.querySelector('#score')
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div')
       board.appendChild(div)
       square.push(0)
-      console.log()
+
     }
 
   }
@@ -60,74 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function drawWorld(a,b){
     scoreDiv.innerText = `${score}`
-    squareMap[0].forEach(function (element, index)  {
-      if(element === a){
-        squares[index].removeAttribute('class')
-        squares[index].classList.add(b)
-      }
+    squareMap.forEach((square, mapIndex) => {
+      square.forEach((element, squareIndex) => {
+        if(element === a){
+          squares[squareIndex + (mapIndex * 9)].removeAttribute('class')
+          squares[squareIndex + (mapIndex * 9)].classList.add(b)
+        }
+      })
     })
-    squareMap[1].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+9].removeAttribute('class')
-        squares[index+9].classList.add(b)
-      }
-    })
-    squareMap[2].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+18].removeAttribute('class')
-        squares[index+18].classList.add(b)
-      }
-    })
-    squareMap[3].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+27].removeAttribute('class')
-        squares[index+27].classList.add(b)
-      }
-    })
-    squareMap[4].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+36].removeAttribute('class')
-        squares[index+36].classList.add(b)
-      }
-    })
-    squareMap[5].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+45].removeAttribute('class')
-        squares[index+45].classList.add(b)
-      }
-    })
-    squareMap[6].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+54].removeAttribute('class')
-        squares[index+54].classList.add(b)
-      }
-    })
-    squareMap[7].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+63].removeAttribute('class')
-        squares[index+63].classList.add(b)
-      }
-    })
-    squareMap[8].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+72].removeAttribute('class')
-        squares[index+72].classList.add(b)
-      }
-    })
-    squareMap[9].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+81].removeAttribute('class')
-        squares[index+81].classList.add(b)
-      }
-    })
-    squareMap[10].forEach(function (element, index)  {
-      if(element === a){
-        squares[index+90].removeAttribute('class')
-        squares[index+90].classList.add(b)
-      }
-    })
-
-
   }
 
 
@@ -157,12 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
             squareMap[y+1][x] = squareMap[y][x]
             squareMap[y][x] =0
-
           }
-
-
         }
-
       }
 
 
@@ -233,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pos = Math.floor(Math.random()*5)
 
     if(on){
-    //ran =5
+      ran =1
 
       if (ran === 0){
 
@@ -454,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             squareMap[y+1][x+1] = 6
             squareMap[y-1][x+1] = 6
             console.log('1')
-          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 ){
+          }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] ===  6&& squareMap[y-1][x] === 6 && squareMap[y][x-1] === 0){
             squareMap[y-1][x] = 0
             squareMap[y][x-1] = 6
             squareMap[y][x+1] = 6
@@ -475,22 +411,23 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           //irotate
-          if(squareMap[y][x] === 1 && squareMap[y][x+1] === 1 && squareMap[y][x+2] === 1 && squareMap[y][x+3] === 1){
+          if(squareMap[y][x] === 1 && squareMap[y][x+1] === 1 && squareMap[y][x+2] === 1 && squareMap[y][x+3] === 1 && squareMap[y+2][x+1] === 0){
             squareMap[y+1][x+1] = 1
             squareMap[y+2][x+1] = 1
-            squareMap[y+3][x+1] = 1
+            squareMap[y-1][x+1] = 1
             squareMap[y][x] = 0
             squareMap[y][x+2] = 0
             squareMap[y][x+3] = 0
-          } else if(squareMap[y][x] === 1 && squareMap[y-1][x] === 1 && squareMap[y-2][x] === 1 && squareMap[y-3][x] === 1){
-            squareMap[y][x] = 1
-            squareMap[y-1][x] = 0
+          } else if(squareMap[y][x] === 1 && squareMap[y-1][x] === 1 && squareMap[y-2][x] === 1 && squareMap[y-3][x] === 1 && squareMap[y-1][x+2] === 0 && squareMap[y-1][x-1] === 0){
+            squareMap[y-1][x] = 1
+            squareMap[y][x] = 0
             squareMap[y-2][x] = 0
             squareMap[y-3][x] = 0
-            squareMap[y+1][x] = 1
-            squareMap[y+1][x+1] = 1
-            squareMap[y+1][x+2] = 1
-            squareMap[y+1][x+3] = 1
+            squareMap[y-1][x+2] = 1
+            squareMap[y-1][x-1] = 1
+            squareMap[y-1][x+1] = 1
+            return
+
 
           }
           //rotate j 3
@@ -628,10 +565,10 @@ document.addEventListener('DOMContentLoaded', () => {
             squareMap[y-1][x] = 0
             squareMap[y-1][x-1] = 0
 
-            console.log('777777777')
+            //  console.log('777777777')
 
           }else if(squareMap[y][x] === 7 && squareMap[y+1][x] === 7 && squareMap[y][x+1] === 7 && squareMap[y-1][x+1] === 7){
-            console.log('here we gooooo again')
+          //  console.log('here we gooooo again')
 
             squareMap[y][x] = 7
             squareMap[y+1][x] = 7
@@ -688,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
       if (lose) {
-        console.log('lose')
+        //console.log('lose')
         on = false
         board.innerText ='GAME OVER!'
 
@@ -708,10 +645,10 @@ document.addEventListener('DOMContentLoaded', () => {
       rotateShape()
     } else if(e.keyCode === 80){
       on = false
-      console.log('p')
+      //console.log('p')
     } else if(e.keyCode === 83){
       on = true
-      console.log('p')
+      //console.log('p')
     }
 
 
@@ -748,7 +685,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const  update = setInterval(function () {
 
     if(on === true){
-    console.log(squareMap)
+      console.log(squareMap)
       checkForLoss()
       upadteBoard()
 
