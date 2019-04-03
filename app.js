@@ -21,20 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const rowSound = document.getElementById('rowSound')
 
 
+
   let on = true
   let score = 0
   let highScore= 0
   const width = 9
   let square =[]
   const squareMap = []
-  highScoreDiv.innerText = highScore
+  let speed = 1000
+  highScoreDiv.innerText = window.localStorage.getItem('highScore')
 
   gameOver.classList.add('topRow')
+
+
+
 
   reset.addEventListener('click', function () {
 
 
-
+    speed = 1000
     square =[]
     on = true
 
@@ -48,11 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     generateShape()
     if(score > highScore){
       highScore = score
+      window.localStorage.setItem('highScore', `${highScore}`)
     }
 
-    highScoreDiv.innerText = highScore
+    highScoreDiv.innerText = window.localStorage.getItem('highScore')
     score = 0
     gameOver.classList.add('topRow')
+    gameLoop()
 
 
   })
@@ -555,10 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('slwso')
         }
         //done
-
-
-
-
         //rotate z 7
         if(squareMap[y][x] === 7 && squareMap[y-1][x-1] === 7 && squareMap[y-1][x] === 7 && squareMap[y][x+1] === 7){
 
@@ -582,14 +585,9 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y][x+1] = 0
           squareMap[y-1][x+1] = 0
 
-
         }
 
-
       }
-
-
-
 
     }
 
@@ -613,6 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y--
         score+=9
         rowSound.play()
+        speed -= 100
 
       }
     }
@@ -652,6 +651,7 @@ document.addEventListener('DOMContentLoaded', () => {
       //console.log('p')
     } else if(e.keyCode === 83){
       on = true
+      gameLoop()
       //console.log('p')
     }
 
@@ -672,16 +672,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+  const gameLoop = function(){
+    const  loop = setTimeout(function () {
 
-  const  loop = setInterval(function () {
+      if(on === true){
+        console.log(squareMap)
 
-    if(on === true){
-      console.log(squareMap)
+        upadteBoard()
+        moveShapesDown()
+        gameLoop()
+      }
+    }, speed)
+  }
 
-      upadteBoard()
-      moveShapesDown()
-    }
-  }, 1000)
+  gameLoop()
 
 
   const  update = setInterval(function () {
@@ -692,8 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     }
-  }, 500)
-
+  }, 250)
 
 //Fucking DOMContentLoaded
 })
