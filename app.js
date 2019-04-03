@@ -19,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const reset = document.querySelector('#reset')
   const gameOver = document.querySelector('#gameOver')
   const rowSound = document.getElementById('rowSound')
+  const resetHS = document.querySelector('#resetHS')
 
 
 
   let on = true
   let score = 0
-  let highScore= 0
+  let highScore= window.localStorage.getItem('highScore')
   const width = 9
   let square =[]
   const squareMap = []
@@ -32,6 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
   highScoreDiv.innerText = window.localStorage.getItem('highScore')
 
   gameOver.classList.add('topRow')
+
+
+  resetHS.addEventListener('click', function () {
+
+
+
+    window.localStorage.setItem('highScore', '0')
+    highScoreDiv.innerText = window.localStorage.getItem('highScore')
+    console.log('click')
+  })
+
+
 
 
 
@@ -241,6 +254,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     console.log(previewShape)
     if(on){
+
+    //  previewShape = 1
 
       if (previewShape === 0){
 
@@ -592,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   }
-
+let fullLineNum = -5
 
   function checkLines(){
 
@@ -601,17 +616,23 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let x=0; x<squareMap[y].length; x++) {
         if(squareMap[y][x] < 10) {
           fullLine= false
+
         }
 
 
       }
       if (fullLine) {
+
+        fullLineNum+=5
+        console.log(fullLineNum)
+        score += (9 +Math.ceil((fullLineNum*1.5)))
         squareMap.splice(y, 1)
         squareMap.splice(0,0,[0,0,0,0,0,0,0,0,0])
         y--
-        score+=9
+
         rowSound.play()
-        speed -= 100
+        speed -= 50
+        console.log(speed)
 
       }
     }
@@ -681,6 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
         upadteBoard()
         moveShapesDown()
         gameLoop()
+        fullLineNum = -5
       }
     }, speed)
   }
@@ -696,7 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     }
-  }, 250)
+  }, 200)
 
 //Fucking DOMContentLoaded
 })
