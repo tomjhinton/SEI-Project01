@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //const sSelect = document.querySelectorAll('.board > .s')
   //const tSelect = document.querySelectorAll('.board > .t')
   //const zSelect = document.querySelectorAll('.board > .z')
-const preview = document.querySelector('.preview')
+  const preview = document.querySelector('.preview')
 
   const random = Math.floor(Math.random()* 7)
   //console.log(random)
@@ -24,7 +24,7 @@ const preview = document.querySelector('.preview')
   let highScore= 0
   const width = 9
   let square =[]
-  let squareMap = []
+  const squareMap = []
 
 
   reset.addEventListener('click', function () {
@@ -70,15 +70,16 @@ const preview = document.querySelector('.preview')
   makeBoard()
 
 
-function mapSquares(){  square.forEach((element)=>{
-    if(!squareMap.length || squareMap[squareMap.length-1].length === width)
-      squareMap.push([])
+  function mapSquares(){
+    square.forEach((element)=>{
+      if(!squareMap.length || squareMap[squareMap.length-1].length === width)
+        squareMap.push([])
 
-    squareMap[squareMap.length-1].push(element)
-  })
-}
+      squareMap[squareMap.length-1].push(element)
+    })
+  }
 
-mapSquares()
+  mapSquares()
 
   function clearBoard(){
     squareMap.forEach(row => row.fill(0))
@@ -89,6 +90,19 @@ mapSquares()
   const squares = document.querySelectorAll('.board > div')
 
 
+  const topRow = [squares[0], squares[1], squares[2], squares[3], squares[4], squares[5], squares[6], squares[7], squares[8]]
+
+
+  function topRowHide(){
+    topRow.forEach((square) => {
+
+      square.classList.add('topRow')
+    }
+
+    )
+  }
+
+
   function drawWorld(a,b){
     scoreDiv.innerText = `${score}`
     squareMap.forEach((square, mapIndex) => {
@@ -96,10 +110,13 @@ mapSquares()
         if(element === a){
           squares[squareIndex + (mapIndex * 9)].removeAttribute('class')
           squares[squareIndex + (mapIndex * 9)].classList.add(b)
+
         }
       })
     })
+    topRowHide()
   }
+
 
 
 
@@ -221,7 +238,7 @@ mapSquares()
     console.log(previewShape)
     if(on){
 
-      //previewShape =3
+      //previewShape =6
 
       if (previewShape === 0){
 
@@ -235,10 +252,10 @@ mapSquares()
 
       }else if (previewShape === 1){
 
-        squareMap[0][pos] =1
-        squareMap[0][pos+1] =1
-        squareMap[0][pos+2] =1
-        squareMap[0][pos+3] =1
+        squareMap[1][pos] =1
+        squareMap[1][pos+1] =1
+        squareMap[1][pos+2] =1
+        squareMap[1][pos+3] =1
 
       }else if (previewShape === 2){
 
@@ -373,6 +390,8 @@ mapSquares()
   function rotateShape(){
     let canMove = true
 
+
+ /*
     for( let y = 0; y < squareMap.length; y++) {
 
       for (let x=0; x<squareMap[y].length; x++) {
@@ -429,6 +448,7 @@ mapSquares()
       }
 
     }
+    */
     if(canMove) {
 
       for(let y=squareMap.length-1;  y>=0;  y-- ){
@@ -453,7 +473,7 @@ mapSquares()
             squareMap[y+1][x] = 6
             squareMap[y-1][x] = 6
             console.log('3')
-          } else if(squareMap[y][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6){
+          } else if(squareMap[y][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 && squareMap[y][x+1] === 0){
             squareMap[y+1][x] = 0
             squareMap[y][x+1] = 6
             squareMap[y-1][x] = 6
@@ -494,7 +514,7 @@ mapSquares()
 
 
 
-          } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y+1][x+1] === 3 && squareMap[y][x-1] === 0 && squareMap[y+1][x-1] === 0 ){
+          } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y+1][x+1] === 3 && squareMap[y][x-1] === 0 && squareMap[y+1][x-1] === 0 && squareMap[y][x+1] === 0 ){
             squareMap[y][x] = 3
             squareMap[y][x+1] = 3
             squareMap[y][x-1] = 3
@@ -503,7 +523,7 @@ mapSquares()
             squareMap[y-1][x] = 0
             squareMap[y+1][x+1] = 0
             console.log('dehufi')
-          } else if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y+1][x-1] === 3 ){
+          } else if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y+1][x-1] === 3 && squareMap[y+1][x] ===0 && squareMap[y-1][x-1] === 0 ){
             squareMap[y][x] = 3
             squareMap[y-1][x] = 3
             squareMap[y-1][x-1] = 3
@@ -512,7 +532,7 @@ mapSquares()
             squareMap[y][x+1] = 0
             squareMap[y+1][x-1] = 0
             console.log('hey')
-          } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 ){
+          } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 &&   squareMap[y][x+1] === 0 ){
             squareMap[y-1][x] = 0
             squareMap[y+1][x] = 0
             squareMap[y-1][x-1] = 0
@@ -526,7 +546,7 @@ mapSquares()
           //rotate l 2
 
 
-          if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 //&& squareMap[y+1][x] === 0
+          if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 && squareMap[y+1][x] === 0
           ){
 
             squareMap[y][x] = 2
@@ -539,11 +559,9 @@ mapSquares()
 
             //done
 
-          } else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 && squareMap[y][x-1] === 0 && squareMap[y+1][x+1] === 0
+          } else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y-1][x+1] === 2 && squareMap[y][x-1] === 0 && squareMap[y+1][x+1] === 0 && squareMap[y][x+1] === 0
           ){
-            if(x === 0){
-              canMove = false
-            }
+
             squareMap[y][x] = 2
             squareMap[y][x+1] = 2
             squareMap[y][x-1] = 2
@@ -554,7 +572,7 @@ mapSquares()
             console.log('spinny')
 
             // done
-          } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2// && squareMap[y-1][x-1] === 0
+          } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2 && squareMap[y-1][x-1] === 0
           ){
             squareMap[y][x] = 2
             squareMap[y-1][x] = 2
@@ -568,7 +586,7 @@ mapSquares()
             squareMap[y][x+1] = 0
             //  done
             console.log('hey')
-          }  else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y+1][x-1] === 2 ){
+          }  else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y+1][x-1] === 2 && squareMap[y][x+1] === 0 ){
             squareMap[y][x] = 2
             squareMap[y][x-1] = 2
             squareMap[y][x+1] = 2
@@ -585,7 +603,7 @@ mapSquares()
 
 
           //rotate s 5
-          if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5){
+          if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 0 && squareMap[y+1][x+1] === 0){
             squareMap[y][x] = 5
             squareMap[y-1][x] = 5
             squareMap[y][x+1] = 5
@@ -594,7 +612,7 @@ mapSquares()
             squareMap[y-1][x+1] = 0
             console.log('5')
             //done
-          } else if(squareMap[y][x] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x+1] === 5 && squareMap[y+1][x-1] === 0){
+          } else if(squareMap[y][x] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x+1] === 5 && squareMap[y+1][x-1] === 0 && squareMap[y+1][x] === 0){
             squareMap[y][x] = 5
             squareMap[y][x+1] = 5
             squareMap[y+1][x] = 5
@@ -603,13 +621,9 @@ mapSquares()
             squareMap[y-1][x] = 0
 
             console.log('slwso')
-            //done
-          }else if(squareMap[y][x] === 5 && squareMap[y+1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x-1] === 5){
-
-            console.log('iqefjoier')
-
-
           }
+            //done
+
 
 
 
