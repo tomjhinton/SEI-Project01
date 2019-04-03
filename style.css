@@ -1,5 +1,5 @@
 *{
-  border: 1px solid black;
+
   box-sizing: border-box;
   text-align: center;
   color: white;
@@ -8,7 +8,8 @@
 
 
 body{
-  background-color: black;
+  background-image: url('background2.gif');
+
 }
 .board{
 
@@ -17,6 +18,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  border: border:50px solid pink;
 }
 
 
@@ -24,9 +26,9 @@ body{
 
 height: calc(100%/9);
 width: calc(100%/9);
-border: 1px solid black;
-
-
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 
 }
 
@@ -37,7 +39,7 @@ border: 1px solid black;
   width:50px;
   margin: 0 auto;
   font-size: 50px;
-  
+
 }
 
 
@@ -51,34 +53,50 @@ border: 1px solid black;
 
 .b{
   background-color: white;
+  border: 1px solid pink;
 }
 
  .i{
-   background-color: red;
+   background-color: rgba(25, 181, 254, 0.3);
+   border: 1px solid black;
 
  }
  .l{
-   background-color: green;
+   background-color: rgba(241, 140, 34, 0.4);
+   border: 1px solid black;
+
 
  }
  .j{
-   background-color: blue;
+   background-color: rgba(0, 0, 255, 0.3);
+   border: 1px solid black;
+
 
  }
  .o{
-   background-color: yellow;
+   background-color: rgba(240, 255, 0, 0.3);
+
+   border: 1px solid black;
+
 
  }
  .s{
-   background-color: orange;
+   background-color: rgba(255, 0, 0, 0.3);
+   border: 1px solid black;
+
 
  }
  .t{
-   background-color: purple;
+  background-color: rgba(154, 18, 179, 0.3);
+   border: 1px solid black;
+
+
 
  }
  .z{
-   background-color: silver;
+   background-color: rgba(0, 255, 0, 0.3);
+   border: 1px solid black;
+
 
  }
 
