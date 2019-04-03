@@ -87,11 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
-
-
-
-
   makeBoard()
 
 
@@ -607,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   }
-let fullLineNum = -5
+  let fullLineNum = -5
 
   function checkLines(){
 
