@@ -34,19 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gameOver.classList.add('topRow')
 
-
   resetHS.addEventListener('click', function () {
-
 
 
     window.localStorage.setItem('highScore', '0')
     highScoreDiv.innerText = window.localStorage.getItem('highScore')
     console.log('click')
   })
-
-
-
-
 
 
   reset.addEventListener('click', function () {
@@ -60,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearBoard()
     drawWorld()
     upadteBoard()
-
 
     console.log('click')
     generateShape()
@@ -105,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     squareMap.forEach(row => row.fill(0))
   }
 
-
   const squares = document.querySelectorAll('.board > div')
-
 
   const topRow = [squares[0], squares[1], squares[2], squares[3], squares[4], squares[5], squares[6], squares[7], squares[8]]
 
@@ -217,6 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(squareMap[y][x] > 0 && squareMap[y][x] < 10){
           squareMap[y][x] = squareMap[y][x] + 10
+          console.log('freeze')
+          console.log(squareMap)
+
         }
       }
     }
@@ -250,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(previewShape)
     if(on){
 
-    //  previewShape = 1
+      //  previewShape = 1
 
       if (previewShape === 0){
 
@@ -410,36 +404,32 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y][x] = 0
           squareMap[y+1][x+1] = 6
           squareMap[y-1][x+1] = 6
-          console.log('1')
         }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] ===  6&& squareMap[y-1][x] === 6 && squareMap[y][x-1] === 0){
           squareMap[y-1][x] = 0
           squareMap[y][x-1] = 6
           squareMap[y][x+1] = 6
-          console.log('2')
         }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0){
           squareMap[y][x+1] = 0
           squareMap[y][x-1] = 6
           squareMap[y+1][x] = 6
           squareMap[y-1][x] = 6
-          console.log('3')
         } else if(squareMap[y][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 && squareMap[y][x+1] === 0){
           squareMap[y+1][x] = 0
           squareMap[y][x+1] = 6
           squareMap[y-1][x] = 6
           squareMap[y][x-1] = 6
-          console.log('4')
           return
         }
 
         //irotate
-        if(squareMap[y][x] === 1 && squareMap[y][x+1] === 1 && squareMap[y][x+2] === 1 && squareMap[y][x+3] === 1 && squareMap[y+2][x+1] === 0){
+        if(squareMap[y][x] === 1 && squareMap[y][x+1] === 1 && squareMap[y][x+2] === 1 && squareMap[y][x+3] === 1 && squareMap[y+2][x+1] === 0 &&  squareMap[y+1][x+1] === 0){
           squareMap[y+1][x+1] = 1
           squareMap[y+2][x+1] = 1
           squareMap[y-1][x+1] = 1
           squareMap[y][x] = 0
           squareMap[y][x+2] = 0
           squareMap[y][x+3] = 0
-        } else if(squareMap[y][x] === 1 && squareMap[y-1][x] === 1 && squareMap[y-2][x] === 1 && squareMap[y-3][x] === 1 && squareMap[y-1][x+2] === 0 && squareMap[y-1][x-1] === 0){
+        } else if(squareMap[y][x] === 1 && squareMap[y-1][x] === 1 && squareMap[y-2][x] === 1 && squareMap[y-3][x] === 1 && squareMap[y-1][x+2] === 0 && squareMap[y-1][x-1] === 0 && squareMap[y-1][x+2] === 0){
           squareMap[y-1][x] = 1
           squareMap[y][x] = 0
           squareMap[y-2][x] = 0
@@ -448,10 +438,8 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y-1][x-1] = 1
           squareMap[y-1][x+1] = 1
           return
-
-
         }
-        //rotate j 3
+        //rotate L 3
         if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y-1][x+1] === 3 ){
           squareMap[y][x] = 3
           squareMap[y][x-1] = 0
@@ -471,7 +459,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x] = 0
           squareMap[y-1][x] = 0
           squareMap[y+1][x+1] = 0
-          console.log('dehufi')
         } else if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y+1][x-1] === 3 && squareMap[y+1][x] ===0 && squareMap[y-1][x-1] === 0 ){
           squareMap[y][x] = 3
           squareMap[y-1][x] = 3
@@ -480,8 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y][x-1] = 0
           squareMap[y][x+1] = 0
           squareMap[y+1][x-1] = 0
-          console.log('hey')
-        } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 &&   squareMap[y][x+1] === 0 ){
+        } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 &&   squareMap[y][x+1] === 0 && squareMap[y-1][x+1] === 0){
           squareMap[y-1][x] = 0
           squareMap[y+1][x] = 0
           squareMap[y-1][x-1] = 0
@@ -492,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
           //console.log('heyHo')
         }
 
-        //rotate l 2
+        //rotate J 2
 
 
         if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 && squareMap[y+1][x] === 0
@@ -518,7 +504,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x] = 0
           squareMap[y-1][x] = 0
           squareMap[y-1][x+1] = 0
-          console.log('spinny')
 
           // done
         } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2 && squareMap[y-1][x-1] === 0
@@ -534,7 +519,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y][x-1] = 0
           squareMap[y][x+1] = 0
           //  done
-          console.log('hey')
         }  else if(squareMap[y][x] === 2 && squareMap[y-1][x] === 2 && squareMap[y+1][x] === 2 && squareMap[y+1][x-1] === 2 && squareMap[y][x+1] === 0 ){
           squareMap[y][x] = 2
           squareMap[y][x-1] = 2
@@ -543,7 +527,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x] = 0
           squareMap[y+1][x-1] = 0
           squareMap[y-1][x] = 0
-          console.log('blah')
           return
 
         }
@@ -559,7 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x+1] = 5
           squareMap[y][x-1] = 0
           squareMap[y-1][x+1] = 0
-          console.log('5')
           //done
         } else if(squareMap[y][x] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 5 && squareMap[y+1][x+1] === 5 && squareMap[y+1][x-1] === 0 && squareMap[y+1][x] === 0){
           squareMap[y][x] = 5
@@ -568,8 +550,6 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x-1] = 5
           squareMap[y+1][x+1] = 0
           squareMap[y-1][x] = 0
-
-          console.log('slwso')
         }
         //done
         //rotate z 7
@@ -619,7 +599,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (fullLine) {
 
         fullLineNum+=5
-        console.log(fullLineNum)
         score += (9 +Math.ceil((fullLineNum*1.5)))
         squareMap.splice(y, 1)
         squareMap.splice(0,0,[0,0,0,0,0,0,0,0,0])
@@ -627,7 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         rowSound.play()
         speed -= 50
-        console.log(speed)
 
       }
     }
@@ -692,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const  loop = setTimeout(function () {
 
       if(on === true){
-        console.log(squareMap)
+      //  console.log(squareMap)
 
         upadteBoard()
         moveShapesDown()
