@@ -222,6 +222,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ran = Math.floor(Math.random()*7)
     const pos = Math.floor(Math.random()*5)
 
+
+
     if(ran === 0){
       preview.innerText = 'Square'
     }else if(ran === 1){
@@ -240,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(previewShape)
     if(on){
 
-      //  previewShape = 1
+      //  previewShape = 5
 
       if (previewShape === 0){
 
@@ -379,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
       for (let x=squareMap[y].length; x>=0; x--) {
 
         // t Rotate
-        if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y][x+2] === 6 && squareMap[y-1][x+1] === 6 ){
+        if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y][x+2] === 6 && squareMap[y-1][x+1] === 6  && squareMap[y+1][x+1] === 0 ){
           squareMap[y][x] = 0
           squareMap[y+1][x+1] = 6
           squareMap[y-1][x+1] = 6
@@ -387,12 +389,12 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y-1][x] = 0
           squareMap[y][x-1] = 6
           squareMap[y][x+1] = 6
-        }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0 && squareMap[y+1][x] === 0){
+        }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0){
           squareMap[y][x+1] = 0
           squareMap[y][x-1] = 6
           squareMap[y+1][x] = 6
           squareMap[y-1][x] = 6
-        } else if(squareMap[y][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 && squareMap[y][x+1] === 0){
+        } else if(squareMap[y][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y+1][x] === 6 && squareMap[y-1][x] === 6 && squareMap[y][x+1] === 0 ){
           squareMap[y+1][x] = 0
           squareMap[y][x+1] = 6
           squareMap[y-1][x] = 6
