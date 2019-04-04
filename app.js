@@ -45,17 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   reset.addEventListener('click', function () {
 
-
     speed = 1000
     square =[]
+    clearTimeout(loop)
     on = true
-
     mapSquares()
     clearBoard()
     drawWorld()
     upadteBoard()
-
-    console.log('click')
     generateShape()
     if(score > highScore){
       highScore = score
@@ -66,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     gameOver.classList.add('topRow')
     gameLoop()
-
 
   })
 
@@ -253,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
         squareMap[1][pos] =4
         squareMap[1][pos+1] =4
 
-
       }else if (previewShape === 1){
 
         squareMap[0][pos] =1
@@ -268,38 +263,28 @@ document.addEventListener('DOMContentLoaded', () => {
         squareMap[1][pos+1] =2
         squareMap[1][pos+2] =2
 
-
       }else if (previewShape === 3){
-
-
 
         squareMap[0][pos+2] = 3
         squareMap[1][pos+1] = 3
         squareMap[1][pos+2] = 3
         squareMap[1][pos] = 3
 
-
       }else if (previewShape === 4){
-
-
 
         squareMap[0][pos+2] =5
         squareMap[0][pos+1] =5
         squareMap[1][pos] =5
         squareMap[1][pos+1] =5
 
-
       }else if (previewShape === 5){
-
 
         squareMap[0][pos+1] =6
         squareMap[1][pos+2] =6
         squareMap[1][pos] =6
         squareMap[1][pos+1] =6
 
-
       }else if (previewShape === 6){
-
 
         squareMap[0][pos] = 7
         squareMap[0][pos+1] = 7
@@ -309,8 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   generateShape()
-
-
 
   function moveShapesLeft(){
     let canMove = true
@@ -347,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
   }
-
 
 
   function moveShapesRight(){
@@ -389,15 +371,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
-
   function rotateShape(){
 
 
     for(let y=squareMap.length-1;  y>=0;  y-- ){
 
       for (let x=squareMap[y].length; x>=0; x--) {
-
 
         // t Rotate
         if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y][x+2] === 6 && squareMap[y-1][x+1] === 6 ){
@@ -408,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y-1][x] = 0
           squareMap[y][x-1] = 6
           squareMap[y][x+1] = 6
-        }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0){
+        }else if(squareMap[y][x] === 6 && squareMap[y][x+1] === 6 && squareMap[y+1][x] === 6 && squareMap[y][x-1] === 6 && squareMap[y-1][x] === 0 && squareMap[y+1][x] === 0){
           squareMap[y][x+1] = 0
           squareMap[y][x-1] = 6
           squareMap[y+1][x] = 6
@@ -459,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y+1][x] = 0
           squareMap[y-1][x] = 0
           squareMap[y+1][x+1] = 0
-        } else if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y+1][x-1] === 3 && squareMap[y+1][x] ===0 && squareMap[y-1][x-1] === 0 ){
+        } else if(squareMap[y][x] === 3 && squareMap[y][x-1] === 3 && squareMap[y][x+1] === 3 && squareMap[y+1][x-1] === 3 && squareMap[y+1][x] ===0 && squareMap[y-1][x-1] === 0 && squareMap[y-1][x] === 0 ){
           squareMap[y][x] = 3
           squareMap[y-1][x] = 3
           squareMap[y-1][x-1] = 3
@@ -467,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y][x-1] = 0
           squareMap[y][x+1] = 0
           squareMap[y+1][x-1] = 0
-        } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 &&   squareMap[y][x+1] === 0 && squareMap[y-1][x+1] === 0){
+        } else if(squareMap[y][x] === 3 && squareMap[y-1][x] === 3 && squareMap[y+1][x] === 3 && squareMap[y-1][x-1] === 3 &&   squareMap[y][x+1] === 0 && squareMap[y-1][x+1] === 0 && squareMap[y][x-1] === 0){
           squareMap[y-1][x] = 0
           squareMap[y+1][x] = 0
           squareMap[y-1][x-1] = 0
@@ -479,7 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //rotate J 2
-
 
         if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y-1][x-1] === 2 && squareMap[y+1][x] === 0
         ){
@@ -506,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
           squareMap[y-1][x+1] = 0
 
           // done
-        } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2 && squareMap[y-1][x-1] === 0
+        } else if(squareMap[y][x] === 2 && squareMap[y][x-1] === 2 && squareMap[y][x+1] === 2 && squareMap[y+1][x+1] === 2 && squareMap[y-1][x-1] === 0 &&  squareMap[y+1][x-1] === 0
         ){
           squareMap[y][x] = 2
           squareMap[y-1][x] = 2
@@ -532,8 +510,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ///// SHAPE DONE!!!
 
-
-
         //rotate s 5
         if(squareMap[y][x] === 5 && squareMap[y][x-1] === 5 && squareMap[y-1][x+1] === 5 && squareMap[y-1][x] === 5 && squareMap[y][x+1] === 0 && squareMap[y+1][x+1] === 0){
           squareMap[y][x] = 5
@@ -554,7 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //done
         //rotate z 7
         if(squareMap[y][x] === 7 && squareMap[y-1][x-1] === 7 && squareMap[y-1][x] === 7 && squareMap[y][x+1] === 7){
-
 
           squareMap[y][x] = 7
           squareMap[y+1][x] = 7
@@ -619,6 +594,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       }
       if (lose) {
+        if(score > highScore){
+          highScore = score
+          window.localStorage.setItem('highScore', `${highScore}`)
+          highScoreDiv.innerText = window.localStorage.getItem('highScore')
+        }
         //console.log('lose')
         on = false
         gameOver.classList.remove('topRow')
@@ -626,8 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
-
 
 
   document.onkeydown =function(e){
@@ -652,22 +630,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
   function upadteBoard(){
     drawWorld(1, 'i')
+    drawWorld(11, 'i')
     drawWorld(2, 'l')
+    drawWorld(12, 'l')
+    drawWorld(13, 'j')
     drawWorld(3, 'j')
     drawWorld(4, 'o')
+    drawWorld(14, 'o')
     drawWorld(5, 's')
+    drawWorld(15, 's')
     drawWorld(6, 't')
+    drawWorld(16, 't')
+    drawWorld(17, 'z')
     drawWorld(7, 'z')
     drawWorld(0, 'b')
     checkLines()
   }
 
-
+  let loop
   const gameLoop = function(){
-    const  loop = setTimeout(function () {
+    loop = setTimeout(function () {
 
       if(on === true){
       //  console.log(squareMap)
@@ -682,13 +666,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gameLoop()
 
-
   const  update = setInterval(function () {
 
     if(on === true){
       //console.log(squareMap)
       upadteBoard()
-
 
     }
   }, 200)
